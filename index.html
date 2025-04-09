@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="An interactive multiple-choice quiz application with instant feedback and detailed results.">
+    <title>Quiz App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Remove TailwindCSS as we're using Bootstrap -->
+</head>
+<body>
+    <div class="container">
+        <header class="text-center my-4">
+            <h1>Quiz App</h1>
+        </header>
+
+        <!-- Quiz Settings Section -->
+        <div id="quiz-settings" class="card mb-4">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="lesson-filter" class="form-label">Chọn bài học:</label>
+                        <select id="lesson-filter" class="form-select">
+                            <option value="all">Tất cả các bài</option>
+                            <!-- Lesson options will be added dynamically -->
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="question-count" class="form-label">Số lượng câu hỏi:</label>
+                        <select id="question-count" class="form-select">
+                            <option value="20">20 câu hỏi</option>
+                            <option value="50">50 câu hỏi</option>
+                            <option value="all">Tất cả câu hỏi</option>
+                        </select>
+                    </div>
+                    <div class="col-md-12">
+                        <button id="start-quiz" class="btn btn-primary w-100">Bắt đầu làm bài</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progress Bar -->
+        <div id="progress-container" class="mb-4 d-none">
+            <div class="progress">
+                <div id="progress-bar" class="progress-bar" role="progressbar" style="width: 0%"></div>
+            </div>
+            <p id="progress-text" class="text-center mt-2">Câu hỏi 0 / 0</p>
+        </div>
+
+        <!-- Quiz Container -->
+        <div id="quiz-container" class="d-none">
+            <div id="question-container" class="card mb-4">
+                <div class="card-body">
+                    <h2 id="question-text" class="card-title mb-4">Nội dung câu hỏi sẽ hiển thị ở đây</h2>
+                    <div id="options-container">
+                        <!-- Options will be inserted here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <button id="next-button" class="btn btn-primary">Câu tiếp theo</button>
+                <button id="submit-quiz" class="btn btn-success d-none">Nộp bài</button>
+            </div>
+        </div>
+
+        <!-- Results Container -->
+        <div id="results-container" class="card mb-4 d-none">
+            <div class="card-body text-center">
+                <h2>Kết quả bài làm</h2>
+                <div class="result-summary my-4">
+                    <h3 id="total-score">Điểm: 0/0</h3>
+                    <p id="correct-answers">Câu trả lời đúng: 0</p>
+                    <p id="incorrect-answers">Câu trả lời sai: 0</p>
+                </div>
+                <div id="result-actions" class="d-flex justify-content-center gap-2">
+                    <button id="restart-quiz" class="btn btn-primary">Làm lại</button>
+                    <button id="download-results" class="btn btn-secondary">Tải kết quả</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Keyboard Shortcuts Help -->
+        <div class="text-center mt-3 mb-5 d-none" id="keyboard-help">
+            <p class="text-muted">
+                <small>
+                    Phím tắt: [A-D] hoặc [1-4]: Chọn câu trả lời | 
+                    [Space/Enter]: Tiếp tục | [Esc]: Tạm dừng
+                </small>
+            </p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/quiz.js"></script>
+</body>
+</html>

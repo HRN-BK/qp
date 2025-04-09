@@ -1,0 +1,356 @@
+/* Additional custom styling beyond Tailwind */
+
+/* General styles */
+:root {
+    --correct-color: #4ade80;
+    --correct-border: #22c55e;
+    --wrong-color: #f87171;
+    --wrong-border: #ef4444;
+    --selected-color: #bfdbfe;
+    --selected-border: #3b82f6;
+    --unanswered-color: #e5e7eb;
+    --unanswered-border: #9ca3af;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Option buttons styling */
+.option-btn {
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    border-width: 2px;
+    padding: 0.75rem 1rem;
+    cursor: pointer;
+}
+
+.option-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.option-btn:active {
+    transform: translateY(0);
+}
+
+.option-btn.selected {
+    background-color: var(--selected-color) !important;
+    border-color: var(--selected-border) !important;
+}
+
+/* Answer feedback styling */
+.correct-answer {
+    background-color: var(--correct-color) !important;
+    color: white !important;
+    border-color: var(--correct-border) !important;
+    font-weight: 600;
+}
+
+.wrong-answer {
+    background-color: var(--wrong-color) !important;
+    color: white !important;
+    border-color: var(--wrong-border) !important;
+    font-weight: 600;
+}
+
+/* Explanation box styling */
+.explanation-box {
+    border-left: 4px solid #93c5fd;
+    margin-top: 1rem;
+    line-height: 1.5;
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Multi-question display styling */
+#question-card {
+    margin-bottom: 2rem;
+}
+
+#question-card > div {
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#question-card > div:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+#question-card > div:last-child {
+    margin-bottom: 1rem;
+}
+
+/* Submit button container styling */
+.mt-6.text-center {
+    padding: 1rem 0;
+    position: sticky;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid #e5e7eb;
+    z-index: 10;
+}
+
+.mt-6.text-center button {
+    min-width: 200px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.mt-6.text-center button:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+/* Review item styling */
+.review-item {
+    border-left: 4px solid #e5e7eb;
+    padding-left: 1rem;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.review-item.correct {
+    border-left-color: var(--correct-color);
+}
+
+.review-item.incorrect {
+    border-left-color: var(--wrong-color);
+}
+
+.review-item.unanswered {
+    border-left-color: var(--unanswered-color);
+}
+
+.review-item:hover {
+    background-color: #f9fafb;
+}
+
+/* Status labels */
+.review-item .text-xs {
+    display: inline-block;
+    font-size: 0.75rem;
+    vertical-align: middle;
+}
+
+/* Back button */
+#back-to-start-btn {
+    display: block;
+    transition: all 0.2s ease;
+}
+
+#back-to-start-btn:hover {
+    transform: translateX(-3px);
+}
+
+/* Submit anytime button */
+#submit-anytime-btn {
+    transition: all 0.2s ease;
+}
+
+#submit-anytime-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+/* Media queries for better responsiveness */
+@media (max-width: 640px) {
+    .container {
+        padding: 0.75rem;
+    }
+    
+    h1 {
+        font-size: 1.5rem;
+    }
+    
+    .option-btn {
+        padding: 0.75rem 1rem;
+        margin-bottom: 0.5rem;
+        font-size: 1rem;
+    }
+    
+    #question-text {
+        font-size: 1.125rem;
+        line-height: 1.5;
+    }
+    
+    /* Multi-question mobile styles */
+    #question-card > div {
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .mt-6.text-center button {
+        width: 100%;
+        min-width: unset;
+    }
+    
+    .review-item {
+        padding: 0.75rem;
+        font-size: 0.9375rem;
+    }
+    
+    /* Make status labels stack on mobile */
+    .review-item .flex {
+        flex-direction: column;
+    }
+    
+    .review-item .text-xs {
+        margin-left: 0;
+        margin-top: 0.5rem;
+        align-self: flex-start;
+    }
+    
+    /* Better sizing for grid stats on mobile */
+    .grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    
+    .grid-cols-3 p.text-xl {
+        font-size: 1.25rem;
+    }
+    
+    /* Improve back button on mobile */
+    #back-to-start-btn {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+    }
+}
+
+/* Animation for feedback */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.03);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.feedback-animation {
+    animation: pulse 0.5s ease;
+}
+
+/* Additional animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.fade-in {
+    animation: fadeIn 0.3s ease-in;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Touch-friendly optimizations */
+button, 
+select, 
+input[type="radio"] {
+    cursor: pointer;
+    touch-action: manipulation;
+}
+
+select {
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%23374151'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 0.75rem center;
+    background-size: 1.25rem;
+    padding-right: 2.5rem;
+}
+
+/* Progress bar animation */
+#progress-bar {
+    transition: width 0.5s ease;
+}
+
+/* Card shadows and hover effects */
+.shadow-md {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    transition: box-shadow 0.3s ease;
+}
+
+.shadow-md:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Prevent text selection on buttons */
+button {
+    user-select: none;
+}
+
+/* Confirmation dialogs */
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+dialog {
+    border-radius: 0.5rem;
+    border: none;
+    padding: 1.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    max-width: 90%;
+}
+
+/* Landscape mode optimization */
+@media (max-height: 500px) and (orientation: landscape) {
+    body {
+        font-size: 0.875rem;
+    }
+    
+    .container {
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+    }
+    
+    h1 {
+        margin-bottom: 0.5rem;
+        font-size: 1.25rem;
+    }
+    
+    .option-btn {
+        padding: 0.5rem 0.75rem;
+        margin-bottom: 0.25rem;
+    }
+    
+    #start-screen, #quiz-container, #results-screen {
+        padding: 0.75rem;
+    }
+    
+    /* Adjust the back button in landscape mode */
+    #back-to-start-btn {
+        margin-bottom: 0.5rem;
+        padding: 0.25rem 0.5rem;
+        font-size: 0.875rem;
+    }
+    
+    /* Make the explanation box smaller in landscape */
+    .explanation-box {
+        margin-top: 0.5rem;
+        padding: 0.5rem !important;
+    }
+}
